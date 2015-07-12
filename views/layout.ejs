@@ -9,7 +9,7 @@
     <meta name="author" content="Jordi Cerdan">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Pregntas</title>
+    <title>Preguntas</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -35,26 +35,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Quizz: a questions game</a>
+          <a class="navbar-brand" href="/">Quizz: a questions game</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Inicio</a></li>
             <li><a href="/quizzes/question">Preguntas</a></li>
+            <li><a href="/author">Autor</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container theme-showcase" role="main">
+
+      <div class="row">&nbsp;</div>
       
       <section>
         <%- body %>
       </section>
 
+      <div class="row">&nbsp;</div>
+
       <hr/>
       <footer style="margin: : 20px auto">
-        <a href="http://es.wikipedia.org/wiki/quiz" target="_blank">¿Qué es un quizz?</a>
+        <ul class="nav nav-pills">
+          <li><a href="http://es.wikipedia.org/wiki/quiz" target="_blank">¿Qué es un quizz?</a></li>
+          <li><a href="https://github.com/jcerdan/quizz" target="_blank">Github - Quizz</a></li>
+        </ul>
+        
       </footer>
 
     </div> <!-- /container -->
