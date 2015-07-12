@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pregunta</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  </head>
+  <body>
+    <h1><%= pregunta %></h1>
+    <form name="preguntaItalia" method="GET" action="/quizzes/answer">
+      <input type="text" name="respuesta" value="" plceholder="Escriba aquí su respuesta"></input>
+      <input type="submit" value="Enviar"></input>
+    </form>
+  </body>
+</html>
