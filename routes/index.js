@@ -11,6 +11,8 @@ router.get('/author', function(req, res, next){
 	res.render('author');
 });
 
+router.param('quizzId', quizzController.load);
+
 router.get('/quizzes', 												quizzController.index);
 router.get('/quizzes/:quizzId(\\d+)', 				quizzController.show);
 router.get('/quizzes/:quizzId(\\d+)/answer', 	quizzController.answer);
