@@ -34,8 +34,8 @@ exports.answer = function(req, res){
 };
 
 exports.index = function(req, res){
-	var search = req.query.search.replace(" ", "%");
 	if (req.query.search){
+		var search = req.query.search.replace(" ", "%");
 		models.Quizz.findAll({
 				where: ["pregunta like ?", "%" + search + "%"],
 				order: 'pregunta ASC'
