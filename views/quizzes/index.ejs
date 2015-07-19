@@ -1,8 +1,29 @@
-<ol>
-<% var i; for (i=0; i< quizzes.length; i++){ %>
-	<li>
-		<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].pregunta %></a>
-	</li>
-<% } %>
-</ol>
+<div class="row">
+
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Búsqueda</div>
+	  <div class="panel-body">
+	    <form name="buscaPreguntaForm" action="/quizzes" method="GET">
+			<div class="form-group">
+				<label for="search">Términos de búsqueda</label>
+				<input type="text" value="" class="form-control" name="search" placeholder="Indique los términos que desea buscar">
+			</div>
+			  <button type="submit" class="btn btn-default">Enviar</button>
+		</form>
+	  </div>
+	</div>
+		
+	</div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+<div class="list-group">
+	<% var i; for (i=0; i< quizzes.length; i++){ %>
+		<a class="list-group-item" href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].pregunta %></a>
+	<% } %>
+</div>
+
+
+
 

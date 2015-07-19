@@ -34,11 +34,23 @@ exports.answer = function(req, res){
 };
 
 exports.index = function(req, res){
-	models.Quizz.findAll().then(function(quizzes){
-		console.log(quizzes);
-		res.render('quizzes/index', {
-			quizzes: quizzes,
-		})
-	})
+	var search = req.query.search.replace(" ", "%");
+	if (req.query.search){
+		models.Quizz.findAll({
+				where: ["pregunta like ?", "%" + search + "%"],
+				order: 'pregunta ASC'
+			}).then(function(quizzes){
+			res.render('quizzes/index', {
+				quizzes: quizzes,
+			})
+		});
+	}
+	else{
+		models.Quizz.findAll().then(function(quizzes){
+			res.render('quizzes/index', {
+				quizzes: quizzes,
+			})
+		});
+	}
 };
 	

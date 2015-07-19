@@ -34,6 +34,11 @@ sequelize.sync().then(function(){
 				});
 			Quizz.create(
 				{
+					pregunta: "Capital de Andorra",
+					respuesta: "Andorra la Vella"
+				});
+			Quizz.create(
+				{
 					pregunta: "Capital de Portugal",
 					respuesta: "Lisboa"
 				}
