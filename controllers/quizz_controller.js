@@ -1,7 +1,7 @@
 var models = require("../models/models.js");
 
 exports.show = function(req, res){
-	models.Quizz.find(req.params.quizzId).then(function(quizz){
+	models.Quizz.findById(req.params.quizzId).then(function(quizz){
 		res.render('quizzes/show', {
 			quizz: quizz,
 		});
@@ -9,23 +9,26 @@ exports.show = function(req, res){
 };
 
 exports.answer = function(req, res){
-	models.Quizz.find(req.params.quizzId).then(function(quizz){
+	models.Quizz.findById(req.params.quizzId).then(function(quizz){
 		if (req.query.respuesta === quizz.respuesta)
 			res.render('quizzes/answer', {
-				respuesta: 'Correcto'
+				respuesta: 'Correcto',
+				quizz: quizz,
 			});
 		else
 			res.render('quizzes/answer', {
-				respuesta: 'Incorrecto'
+				respuesta: 'Incorrecto',
+				quizz: quizz,
 			});
 	});
-
-	exports.index = function(req, res){
-		models.Quizz.findAll().then(function(quizzes){
-			res.render('quizzes/index', {
-				quizzes: quizzes,
-			})
-		})
-	};
-	
 };
+
+exports.index = function(req, res){
+	models.Quizz.findAll().then(function(quizzes){
+		console.log(quizzes);
+		res.render('quizzes/index', {
+			quizzes: quizzes,
+		})
+	})
+};
+	

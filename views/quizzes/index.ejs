@@ -1,0 +1,8 @@
+<ol>
+<% var i; for (i=0; i< quizzes.length; i++){ %>
+	<li>
+		<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].pregunta %></a>
+	</li>
+<% } %>
+</ol>
+
