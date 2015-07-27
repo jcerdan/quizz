@@ -53,4 +53,22 @@ exports.index = function(req, res){
 		});
 	}
 };
+
+exports.new = function(req, res){
+	var quizz = models.Quizz.build({
+		pregunta: "pregunta",
+		respuesta: "respuesta",
+	});
+	res.render('quizzes/new', {
+		quizz: quizz,
+	});
+};
+
+exports.create = function(req, res){
+	var quizz = models.Quizz.build(req.body.quizz);
+	quizz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+		res.redirect('/quizzes');
+	});
+
+};
 	
