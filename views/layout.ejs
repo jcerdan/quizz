@@ -52,6 +52,15 @@
       <div class="row">&nbsp;</div>
       
       <section>
+        <% if (errors.length){ %>
+          <div class="row">
+            <% for (var i in errors){ %>
+              <div class="col-md-12 alert alert-danger" role="alert">
+                <%= errors[i].message %>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
         <%- body %>
       </section>
 
