@@ -27,21 +27,22 @@ exports.Quizz = Quizz;
 sequelize.sync().then(function(){
 	Quizz.count().then(function(count){
 		if (count === 0){
-			Quizz.create(
+			Quizz.bulkCreate([
 				{
 					pregunta: "Capital de Italia",
-					respuesta: "Roma"
-				});
-			Quizz.create(
+					respuesta: "Roma",
+					tema: "Ocio",
+				},
 				{
 					pregunta: "Capital de Andorra",
-					respuesta: "Andorra la Vella"
-				});
-			Quizz.create(
+					respuesta: "Andorra la Vella",
+					tema: "Ocio",
+				},
 				{
 					pregunta: "Capital de Portugal",
-					respuesta: "Lisboa"
-				}
+					respuesta: "Lisboa",
+					tema: "Ocio",
+				}]
 			).then(console.log("Base de datos inicializda."));
 		}
 	})

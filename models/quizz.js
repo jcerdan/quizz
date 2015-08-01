@@ -16,6 +16,16 @@ module.exports = function(sequelize, DataTypes){
 							msg: "El campo respuesta no puede estar vacío"
 						}
 					}
+				},
+				tema: {
+					type: DataTypes.ENUM,
+					values: ['Humanidades', 'Ocio', 'Ciencia', 'Tecnología'],
+					validate: {
+		        isIn: {
+		        	args: [['Humanidades', 'Ocio', 'Ciencia', 'Tecnología']],
+		        	msg: "Debes escoger un tema para el quizz",
+		        }
+		      }
 				}
 			}
 		);
