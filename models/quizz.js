@@ -19,10 +19,10 @@ module.exports = function(sequelize, DataTypes){
 				},
 				tema: {
 					type: DataTypes.ENUM,
-					values: ['Humanidades', 'Ocio', 'Ciencia', 'Tecnología'],
+					values: ['Humanidades', 'Ocio', 'Ciencia', 'Tecnologia'],
 					validate: {
 		        isIn: {
-		        	args: [['Humanidades', 'Ocio', 'Ciencia', 'Tecnología']],
+		        	args: [['Humanidades', 'Ocio', 'Ciencia', 'Tecnologia']],
 		        	msg: "Debes escoger un tema para el quizz",
 		        }
 		      }
