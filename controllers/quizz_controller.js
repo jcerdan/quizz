@@ -5,9 +5,7 @@ exports.load = function(req, res, next, quizzId){
 		where: id = Number(quizzId),
 		include: [ models.Comment ]
 	}).then(function(quizz){
-		console.log(quizz);
 		if (quizz){
-			console.log(quizz);
 			req.quizz = quizz;
 			next();
 		}
@@ -17,18 +15,6 @@ exports.load = function(req, res, next, quizzId){
 	}).catch(function(error){
 		next(error);
 	});
-
-	/*models.Quizz.findById(quizzId).then(function(quizz){
-		if (quizz){
-			req.quizz = quizz;
-			next();
-		}
-		else{
-			next(new Error("no Existe el ID: " + quizzId));
-		}
-	}).catch(function(error){
-		next(error);
-	});*/
 };
 
 exports.show = function(req, res){

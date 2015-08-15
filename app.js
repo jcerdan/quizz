@@ -3,9 +3,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var partials = require('express-partials');
@@ -23,9 +24,23 @@ app.use(partials());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+//app.use(cookieParser('yRK1lq5ldb4XwsPzUfyu9iXxrwRmCQ66'));
+app.use(session({
+  secret: 'yRK1lq5ldb4XwsPzUfyu9iXxrwRmCQ66',
+  //cookie: { secure: true }
+   //cookie: { maxAge: 60000 }
+}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next){
+  console.log(req.session);
+  if (!req.path.match(/\/login|\/logout/)){
+    req.session.redir = req.path;
+  }
+  res.locals.session = req.session;
+  next();
+});
 
 app.use('/', routes);
 

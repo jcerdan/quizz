@@ -43,6 +43,13 @@
             <li><a href="/quizzes">Preguntas</a></li>
             <li><a href="/author">Autor</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if (!session.user){ %>
+              <li><a href="/login">Login</a></li>
+            <% } else { %>
+              <li><a href="/logout">Logout</a></li>
+            <% } %>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
