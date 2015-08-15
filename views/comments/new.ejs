@@ -1,0 +1,8 @@
+<h2>Añadiendo un comentario al Quizz: <%= quizz.pregunta %></h2>
+<div class="row">
+	<div class="col-md-12">
+		<form name="newComment" action="/quizzes/<%= quizzId %>/comments/create" method="post" class="form-horizontal">
+			<% include _form.ejs %>
+		</form>
+	</div>
+</div>

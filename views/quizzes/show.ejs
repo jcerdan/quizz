@@ -3,3 +3,20 @@
   <input type="text" name="respuesta" value="" placeholder="Escriba aquí su respuesta"></input>
   <input type="submit" value="Enviar"></input>
 </form>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Comentarios</h3>
+		<button onClick="document.location='/quizzes/<%=quizz.id %>/comments/new'">Nuevo comentario</button>
+		<div class="row">&nbsp;</div>
+		<table class="table table-striped">
+			<tbody>
+				<% for (index in quizz.Comments){ %>
+					<tr>
+						<td><%= quizz.Comments[index].texto %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+</div>

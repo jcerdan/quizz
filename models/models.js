@@ -20,9 +20,17 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
   omitNull: true
 });
 
+// importamos los modelos
 var Quizz = sequelize.import(path.join(__dirname, 'quizz'));
+var Comment = sequelize.import(path.join(__dirname, 'comment'));
 
+// creamos las relaciones entre tablas
+Comment.belongsTo(Quizz);
+Quizz.hasMany(Comment);
+
+// exportamos la base de datos para la aplicación
 exports.Quizz = Quizz;
+exports.Comment = Comment;
 
 sequelize.sync().then(function(){
 	Quizz.count().then(function(count){
