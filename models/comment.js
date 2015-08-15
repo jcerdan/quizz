@@ -9,18 +9,10 @@ module.exports = function(sequelize, DataTypes){
 						}
 					}
 				},
-				/*
-				Quizz: {
-					type: DataTypes.ENUM,
-					values: ['Humanidades', 'Ocio', 'Ciencia', 'Tecnologia'],
-					validate: {
-		        isIn: {
-		        	args: [['Humanidades', 'Ocio', 'Ciencia', 'Tecnologia']],
-		        	msg: "Debes escoger un tema para el quizz",
-		        }
-		      }
+				publicado: {
+					type: DataTypes.BOOLEAN,
+					defaultValue: false
 				}
-				*/
 			}
 		);
 }

@@ -28,13 +28,11 @@ app.use(bodyParser.urlencoded());
 app.use(session({
   secret: 'yRK1lq5ldb4XwsPzUfyu9iXxrwRmCQ66',
   //cookie: { secure: true }
-   //cookie: { maxAge: 60000 }
 }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
-  console.log(req.session);
   if (!req.path.match(/\/login|\/logout/)){
     req.session.redir = req.path;
   }

@@ -1,5 +1,35 @@
 var models = require("../models/models.js");
 
+exports.load = function(req, res, next, commentId){
+	models.Comment.find({
+		where: {
+			Id: Number(commentId)
+		}
+	}).then(function(comment){
+		if (comment){
+			req.comment = comment;
+			next();
+		}
+		else{
+			next(new Error("Este comentario no existe: " + commentId));
+		}
+	}).catch(function(error){
+		next(error);
+	});
+};
+
+exports.publish = function(req, res){
+	req.comment.publicado = true;
+
+	req.comment.save({
+		fields: ["publicado"]
+	}).then(function(){
+		res.redirect("/quizzes/" + req.params.quizzId);
+	}).catch(function(err){
+		next(err);
+	});
+};
+
 exports.new = function(req, res){
 	var comment = models.Comment.build({
 		texto: "",

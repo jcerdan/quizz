@@ -19,6 +19,7 @@ router.get('/author', function(req, res, next){
 });
 
 router.param('quizzId', quizzController.load);
+router.param('commentId', commentController.load);
 
 router.get('/login', 				sessionController.new);
 router.post('/login', 			sessionController.create);
@@ -27,14 +28,15 @@ router.get('/logout', 				sessionController.destroy);
 router.get('/quizzes', 												quizzController.index);
 router.get('/quizzes/:quizzId(\\d+)', 				quizzController.show);
 router.get('/quizzes/:quizzId(\\d+)/answer', 	quizzController.answer);
-router.get('/quizzes/new', 										quizzController.new);
-router.post('/quizzes/create', 								quizzController.create);
-router.get('/quizzes/:quizzId(\\d+)/edit', 		quizzController.edit);
-router.put('/quizzes/:quizzId(\\d+)', 				quizzController.update);
-router.delete('/quizzes/:quizzId(\\d+)', 			quizzController.destroy);
+router.get('/quizzes/new', 										sessionController.loginRequired, quizzController.new);
+router.post('/quizzes/create', 								sessionController.loginRequired, quizzController.create);
+router.get('/quizzes/:quizzId(\\d+)/edit', 		sessionController.loginRequired, quizzController.edit);
+router.put('/quizzes/:quizzId(\\d+)', 				sessionController.loginRequired, quizzController.update);
+router.delete('/quizzes/:quizzId(\\d+)', 			sessionController.loginRequired, quizzController.destroy);
 
 // rutas de comentarios
 router.get('/quizzes/:quizzId(\\d+)/comments/new', 			commentController.new);
 router.post('/quizzes/:quizzId(\\d+)/comments/create', 	commentController.create);
+router.put('/quizzes/:quizzId(\\d+)/comments/:commentId/publish', 	sessionController.loginRequired, commentController.publish);
 
 module.exports = router;

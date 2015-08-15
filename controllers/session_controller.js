@@ -1,4 +1,13 @@
 
+exports.loginRequired = function(req, res, next){
+	if (req.session.user){
+		next();
+	}
+	else{
+		res.redirect("/login");
+	}
+}
+
 exports.new = function(req, res){
 	var errors = req.session.errors || {};
 	req.session.errors = {};
@@ -15,7 +24,6 @@ exports.create = function(req, res){
 
 	var userController = require("./user_controller");
 	userController.autenticar(username, password, function(err, user){
-		console.log(err);
 		if(err){
 			req.sessions.error = [{message: "Se ha producido un error: " + err }];
 			res.redirect("/login");
@@ -25,7 +33,6 @@ exports.create = function(req, res){
 				id: user.id,
 				username: user.username
 			};
-			console.log("redirect to: " + req.session.redir);
 			res.redirect(req.session.redir.toString());
 		}
 	});

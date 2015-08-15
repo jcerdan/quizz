@@ -13,7 +13,16 @@
 			<tbody>
 				<% for (index in quizz.Comments){ %>
 					<tr>
-						<td><%= quizz.Comments[index].texto %></td>
+						<% if ((quizz.Comments[index].publicado) || (session.user)) { %> 
+							<td><%= quizz.Comments[index].texto %></td>
+						<% } %>
+						<% if (session.user && !quizz.Comments[index].publicado){ %>
+							<td>
+								<form name="publishComment" action="/quizzes/<%= quizz.id %>/comments/<%=quizz.Comments[index].id%>/publish?_method=PUT" method="POST">
+									<button type="submit" class="btn btn-primary">Publicar</button>
+								</form>
+							</td>
+						<% } %>
 					</tr>
 				<% } %>
 			</tbody>
