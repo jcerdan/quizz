@@ -27,7 +27,12 @@ app.use(bodyParser.urlencoded());
 //app.use(cookieParser('yRK1lq5ldb4XwsPzUfyu9iXxrwRmCQ66'));
 app.use(session({
   secret: 'yRK1lq5ldb4XwsPzUfyu9iXxrwRmCQ66',
-  //cookie: { secure: true }
+  cookie: { 
+    //secure: true ,
+    maxAge: 2 * 60 * 1000,
+  },
+  rolling: true,
+  resave: true,
 }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,6 +42,7 @@ app.use(function(req, res, next){
     req.session.redir = req.path;
   }
   res.locals.session = req.session;
+  console.log(req.session);
   next();
 });
 
