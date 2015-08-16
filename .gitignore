@@ -4,3 +4,4 @@ npm-debug.log
 models/quizz.sqlite
 quizz.sqlite
 *.sqlite
+*.csr.pem
